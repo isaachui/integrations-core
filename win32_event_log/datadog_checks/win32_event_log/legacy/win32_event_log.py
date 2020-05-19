@@ -31,6 +31,13 @@ class Win32EventLogWMI(WinWMICheck):
         # State
         self.last_ts = {}
 
+        self.check_initializations.append(
+            lambda: self.warning(
+                'This version of the check is deprecated and will be removed in a future release. '
+                'Set `legacy_mode` to `false` and read about the latest options, such as `query`.'
+            )
+        )
+
     def check(self, instance):
         # Connect to the WMI provider
         host = instance.get('host', "localhost")
